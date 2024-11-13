@@ -150,11 +150,13 @@ class Player {
     // 是否有播放地址
     if (!songData || !songData?.url) return null;
     // 是否仅能试听
-    if (songData?.freeTrialInfo !== null) {
-      if (settingStore.playSongDemo) {
-        window.$message.warning("当前歌曲仅可试听，请开通会员后重试");
-      } else return null;
-    }
+    
+    // if (songData?.freeTrialInfo !== null) {
+    //   if (settingStore.playSongDemo) {
+    //     window.$message.warning("当前歌曲仅可试听，请开通会员后重试");
+    //   } else return null;
+    // }
+    
     // 返回歌曲地址
     // 客户端直接返回，网页端转 https
     const url = isElectron ? songData.url : songData.url.replace(/^http:/, "https:");
