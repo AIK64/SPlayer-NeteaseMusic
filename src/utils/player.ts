@@ -4,10 +4,8 @@ import { Howl, Howler } from "howler";
 import { cloneDeep } from "lodash-es";
 import { useMusicStore, useStatusStore, useDataStore, useSettingStore } from "@/stores";
 import { parsedLyricsData, resetSongLyric, parseLocalLyric } from "./lyric";
-
-
-
-import { songUrl, unlockSongUrl, songLyric ,songUrlv1} from "@/api/song";
+//import { songUrl, unlockSongUrl, songLyric ,songUrlv1} from "@/api/song";
+import {  unlockSongUrl, songLyric ,songUrlv1} from "@/api/song";
 import { getCoverColorData } from "@/utils/color";
 import { calculateProgress } from "./time";
 import { isElectron, isDev } from "./helper";
