@@ -4,7 +4,10 @@ import { Howl, Howler } from "howler";
 import { cloneDeep } from "lodash-es";
 import { useMusicStore, useStatusStore, useDataStore, useSettingStore } from "@/stores";
 import { parsedLyricsData, resetSongLyric, parseLocalLyric } from "./lyric";
-import { songUrl, unlockSongUrl, songLyric } from "@/api/song";
+
+
+
+import { songUrl, unlockSongUrl, songLyric ,songUrlv1} from "@/api/song";
 import { getCoverColorData } from "@/utils/color";
 import { calculateProgress } from "./time";
 import { isElectron, isDev } from "./helper";
@@ -144,7 +147,8 @@ class Player {
    */
   private async getOnlineUrl(id: number): Promise<string | null> {
     const settingStore = useSettingStore();
-    const res = await songUrl(id, settingStore.songLevel);
+    //const res = await songUrl(id, settingStore.songLevel);
+    const res=await songUrlv1(id,settingStore.songLevel);
     console.log(`🌐 ${id} music data:`, res);
     const songData = res.data?.[0];
     // 是否有播放地址
