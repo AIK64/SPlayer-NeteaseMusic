@@ -45,6 +45,46 @@ export const songUrl = (
   });
 };
 
+
+/**
+ * 修改的新的获取歌曲url方法
+ */
+export const songUrlv1 = async (
+  id: number,
+  level:
+    | "standard"
+    | "higher"
+    | "exhigh"
+    | "lossless"
+    | "hires"
+    | "jyeffect"
+    | "sky"
+    | "jymaster" = "exhigh"
+): Promise<any> => {
+  const apiUrl = "https://csm.sayqz.com/api/"; // 替换为具体的 API URL
+  const params = new URLSearchParams({
+    id: id.toString(),                 
+    level,
+    timestamp: Date.now().toString(),
+    type:"apiSongUrlV1",       
+    cookie:"MUSIC_U%3D000D1692850B65E904802BEA05FF815B73983E43BCC0E1BF11FBED88DD9C96A1055281E57FCADA53D08424E0A6DB33CF3E59EE7A908CE8251CEE98AB8561C09DD08D9C0AA8457E9B77F595DCFCB78C1E12117A45B72107944343517802E1AB972C5BEABD3FB0FDE4EEFDE11510F029F20A0BA94CAB0BE4B48A075C8116BA78BF9F8964EF29F6002DDBF7D731088DBDC8B25392547B1B45F5495A7E69ECD990FEADB1F2ACD6FDC762AFBB66355949BBC234FABB5ADCCB5C76869152F5DEC34D4819FC4A08E42DADED71A4B83D77685281E1403146FFDAE0556A302E12CE04FB711431D4CE0BDE62AD6385DE68FE938D0EB490D946001E69A36C57494754FED2DD27F07ECEDEC52C2E55F35E30B814BACD27E35F99D29BF987C629E393FCFC86DE1804DD7AA576ED59A350912E04DEBB38E9%3B",
+    
+  });
+
+  try {
+    const response = await fetch(`${apiUrl}?${params.toString()}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching song URL:", error);
+    throw error;
+  }
+};
+
+
 // 获取解锁歌曲 URL
 export const unlockSongUrl = (id: number, keyword: string, server: "netease" | "kuwo") => {
   const params = server === "netease" ? { id } : { keyword };
